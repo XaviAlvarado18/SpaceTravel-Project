@@ -4,11 +4,13 @@
 #include "FatNoiseLite.h"
 #include <glm/gtc/noise.hpp>
 #include "color.h"
+#include "draw.h"
 
 glm::vec3 L4 = glm::vec3(0.0f, 0, 1.0f);
 glm::vec3 L5 = glm::vec3(0.0f, 0, 1.0f);
 glm::vec3 L2 = glm::vec3(0.0f, 0, 1.0f);
 glm::vec3 L3 = glm::vec3(0.0f, 0, 1.0f);
+float T = 0.5f;
 
 float ox;
 float oy;
@@ -313,3 +315,42 @@ Fragment fragmentShaderMars(Fragment& fragment) {
 
     return fragment;
 }
+
+
+Fragment fragmentShaderSun(Fragment& fragment) {
+    // Obtiene las coordenadas del fragmento en el espacio 2D
+    glm::vec2 fragmentCoords(fragment.original.x, fragment.original.y);
+
+    // Define los colores base de los aros de lava
+    Color lavaColor1 = Color(255, 255, 0); // Rojo para el primer anillo
+    Color lavaColor2 = Color(64, 11, 11); // Rojo oscuro-anaranjado para el segundo anillo
+
+    FastNoiseLite noise;
+    noise.SetNoiseType(FastNoiseLite:: NoiseType_Cellular);
+    noise.SetSeed(1337);
+    noise.SetFrequency(0.010f);
+    noise.SetFractalType(FastNoiseLite:: FractalType_PingPong);
+    noise.SetFractalOctaves(4);
+    noise.SetFractalLacunarity(2 + T);
+    noise.SetFractalGain(0.90f);
+    noise.SetFractalWeightedStrength(0.70f);
+    noise.SetFractalPingPongStrength(3 );
+    noise.SetCellularDistanceFunction(FastNoiseLite:: CellularDistanceFunction_Euclidean);
+    noise.SetCellularReturnType(FastNoiseLite:: CellularReturnType_Distance2Add);
+    noise.SetCellularJitter(1);
+
+    float ox = 3000.0f;
+    float oy =3000.0f;
+    float zoom = 5000.0f;
+
+    float noiseValue = abs(noise.GetNoise((fragment.original.x + ox) * zoom, (fragment.original.y + oy) * zoom));
+
+    Color tmpColor = (noiseValue < 0.1f) ? lavaColor1 : lavaColor2;
+
+
+    fragment.color = tmpColor * fragment.z;
+    return fragment;
+}
+
+
+

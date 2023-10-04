@@ -3,6 +3,7 @@
 
 CMakeFiles/MySDLProject.dir/WinMain.cpp.obj
  C:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/WinMain.cpp
+ C:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/BarycentricColor.h
  C:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/FatNoiseLite.h
  C:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/color.h
  C:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/draw.h
@@ -652,6 +653,7 @@ CMakeFiles/MySDLProject.dir/draw.cpp.obj
  C:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/draw.cpp
  C:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/color.h
  C:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/draw.h
+ C:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/shapes.h
  C:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/src/include/glm-master/glm/common.hpp
  C:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/src/include/glm-master/glm/detail/_fixes.hpp
  C:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/src/include/glm-master/glm/detail/_vectorize.hpp
@@ -785,6 +787,7 @@ CMakeFiles/MySDLProject.dir/draw.cpp.obj
  C:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/src/include/glm-master/glm/vec3.hpp
  C:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/src/include/glm-master/glm/vec4.hpp
  C:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/src/include/glm-master/glm/vector_relational.hpp
+ C:/msys64/mingw64/include/SDL.h
  C:/msys64/mingw64/include/SDL2/SDL.h
  C:/msys64/mingw64/include/SDL2/SDL_assert.h
  C:/msys64/mingw64/include/SDL2/SDL_atomic.h
@@ -844,6 +847,7 @@ CMakeFiles/MySDLProject.dir/draw.cpp.obj
  C:/msys64/mingw64/include/_timeval.h
  C:/msys64/mingw64/include/assert.h
  C:/msys64/mingw64/include/c++/13.1.0/algorithm
+ C:/msys64/mingw64/include/c++/13.1.0/array
  C:/msys64/mingw64/include/c++/13.1.0/backward/binders.h
  C:/msys64/mingw64/include/c++/13.1.0/bit
  C:/msys64/mingw64/include/c++/13.1.0/bits/algorithmfwd.h
@@ -917,6 +921,7 @@ CMakeFiles/MySDLProject.dir/draw.cpp.obj
  C:/msys64/mingw64/include/c++/13.1.0/climits
  C:/msys64/mingw64/include/c++/13.1.0/clocale
  C:/msys64/mingw64/include/c++/13.1.0/cmath
+ C:/msys64/mingw64/include/c++/13.1.0/compare
  C:/msys64/mingw64/include/c++/13.1.0/cstddef
  C:/msys64/mingw64/include/c++/13.1.0/cstdint
  C:/msys64/mingw64/include/c++/13.1.0/cstdio

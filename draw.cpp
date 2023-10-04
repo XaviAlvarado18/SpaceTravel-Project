@@ -2,6 +2,7 @@
 #include "SDL2/SDL.h"
 #include <vector>
 #include "draw.h"
+#include "shapes.h"
 
 const int WINDOW_WIDTH = 1400;
 const int WINDOW_HEIGHT = 600;

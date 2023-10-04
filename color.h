@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <iostream>
 
+
+
 struct Color {
     Uint8 r;
     Uint8 g;

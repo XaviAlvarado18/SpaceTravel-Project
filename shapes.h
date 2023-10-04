@@ -36,6 +36,7 @@ Fragment planetFragmentShader(Fragment& fragment);
 Fragment spaceshipFragmentShader(Fragment& fragment);
 Fragment gasPlanetV1(Fragment& fragment);
 Fragment fragmentShaderMars(Fragment& fragment);
+Fragment fragmentShaderSun(Fragment& fragment);
 // Declaración de la función rasterize
 
 

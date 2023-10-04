@@ -17,7 +17,6 @@
 
 const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 800;
-float T = 0.5f;
 
 Color clearColor = {0, 0, 0, 255};
 Color currentColor = {255, 255, 255, 255};
@@ -36,44 +35,6 @@ struct Face {
     std::array<int, 3> vertexIndices;
     std::array<int, 3> normalIndices;
 };
-
-Fragment fragmentShaderSun(Fragment& fragment) {
-    // Obtiene las coordenadas del fragmento en el espacio 2D
-    glm::vec2 fragmentCoords(fragment.original.x, fragment.original.y);
-
-    // Define los colores base de los aros de lava
-    Color lavaColor1 = Color(255, 255, 0); // Rojo para el primer anillo
-    Color lavaColor2 = Color(64, 11, 11); // Rojo oscuro-anaranjado para el segundo anillo
-
-    FastNoiseLite noise;
-    noise.SetNoiseType(FastNoiseLite:: NoiseType_Cellular);
-    noise.SetSeed(1337);
-    noise.SetFrequency(0.010f);
-    noise.SetFractalType(FastNoiseLite:: FractalType_PingPong);
-    noise.SetFractalOctaves(4);
-    noise.SetFractalLacunarity(2 + T);
-    noise.SetFractalGain(0.90f);
-    noise.SetFractalWeightedStrength(0.70f);
-    noise.SetFractalPingPongStrength(3 );
-    noise.SetCellularDistanceFunction(FastNoiseLite:: CellularDistanceFunction_Euclidean);
-    noise.SetCellularReturnType(FastNoiseLite:: CellularReturnType_Distance2Add);
-    noise.SetCellularJitter(1);
-
-    float ox = 3000.0f;
-    float oy =3000.0f;
-    float zoom = 5000.0f;
-
-    float noiseValue = abs(noise.GetNoise((fragment.original.x + ox) * zoom, (fragment.original.y + oy) * zoom));
-
-    Color tmpColor = (noiseValue < 0.1f) ? lavaColor1 : lavaColor2;
-
-
-    fragment.color = tmpColor * fragment.z;
-    return fragment;
-}
-
-
-
 
 
 void render(const std::vector<Vertex>& vertexArray,  const Uniforms& uniforms) {
@@ -477,7 +438,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     glm::mat4 translationSpaceShip = glm::translate(glm::mat4(1), glm::vec3(0.0f, 140.0f, 560.0f));
     
     glm::mat4 scaleMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(4.0f, 4.0f, 4.0f));
-    glm::mat4 scaleMatrixSun = glm::scale(glm::mat4(1.0f), glm::vec3(0.08f, 0.08f, 0.08f));
+    glm::mat4 scaleMatrixSun = glm::scale(glm::mat4(1.0f), glm::vec3(0.25f, 0.25f, 0.25f));
     glm::mat4 scaleMatrixMoon = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f, 0.1f, 0.1f));
     glm::mat4 scaleMatrixEarth = glm::scale(glm::mat4(1.0f), glm::vec3(0.04f, 0.04f, 0.04f));
     glm::mat4 scaleMatrixAux= glm::scale(glm::mat4(1.0f), glm::vec3(0.006f, 0.006f, 0.006f));
