@@ -596,6 +596,7 @@ CMakeFiles/MySDLProject.dir/WinMain.cpp.obj: \
  C:/msys64/mingw64/include/c++/13.1.0/x86_64-w64-mingw32/bits/basic_file.h \
  C:/msys64/mingw64/include/c++/13.1.0/x86_64-w64-mingw32/bits/c++io.h \
  C:/msys64/mingw64/include/c++/13.1.0/bits/fstream.tcc \
+ C:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/BarycentricColor.h \
  C:/msys64/mingw64/include/c++/13.1.0/sstream \
  C:/msys64/mingw64/include/c++/13.1.0/bits/sstream.tcc \
  C:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/FatNoiseLite.h \
