@@ -1,0 +1,20 @@
+[
+{
+  "directory": "C:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -IC:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/src -IC:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/src/include/glm-master -g -std=gnu++17 -o CMakeFiles\\MySDLProject.dir\\WinMain.cpp.obj -c C:\\Users\\Alvar\\OneDrive\\Documentos\\SemestreVI\\Graficas\\Lab3\\WinMain.cpp",
+  "file": "C:\\Users\\Alvar\\OneDrive\\Documentos\\SemestreVI\\Graficas\\Lab3\\WinMain.cpp",
+  "output": "CMakeFiles\\MySDLProject.dir\\WinMain.cpp.obj"
+},
+{
+  "directory": "C:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -IC:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/src -IC:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/src/include/glm-master -g -std=gnu++17 -o CMakeFiles\\MySDLProject.dir\\shapes.cpp.obj -c C:\\Users\\Alvar\\OneDrive\\Documentos\\SemestreVI\\Graficas\\Lab3\\shapes.cpp",
+  "file": "C:\\Users\\Alvar\\OneDrive\\Documentos\\SemestreVI\\Graficas\\Lab3\\shapes.cpp",
+  "output": "CMakeFiles\\MySDLProject.dir\\shapes.cpp.obj"
+},
+{
+  "directory": "C:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/build",
+  "command": "C:\\msys64\\mingw64\\bin\\g++.exe -IC:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/src -IC:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/src/include/glm-master -g -std=gnu++17 -o CMakeFiles\\MySDLProject.dir\\draw.cpp.obj -c C:\\Users\\Alvar\\OneDrive\\Documentos\\SemestreVI\\Graficas\\Lab3\\draw.cpp",
+  "file": "C:\\Users\\Alvar\\OneDrive\\Documentos\\SemestreVI\\Graficas\\Lab3\\draw.cpp",
+  "output": "CMakeFiles\\MySDLProject.dir\\draw.cpp.obj"
+}
+]

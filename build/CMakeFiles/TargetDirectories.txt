@@ -1,0 +1,3 @@
+C:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/build/CMakeFiles/MySDLProject.dir
+C:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/build/CMakeFiles/edit_cache.dir
+C:/Users/Alvar/OneDrive/Documentos/SemestreVI/Graficas/Lab3/build/CMakeFiles/rebuild_cache.dir
