@@ -650,27 +650,16 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         glm::vec4 camPositionMoon = uniforms5.model * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
         glm::vec4 camPositionMars = uniforms6.model * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
 
-        if(camPositionMoon.z > camPositionEarth.z > camPositionSun.z > camPositionMars.z)
-        {
-            // La tierra está más cerca de la cámara, renderiza primero el sol:
-            //render(vertexArrayStars,uniforms);
-            render(vertexArrayStars, uniforms);
-            render(vertexArrayShip, uniforms4);  //Nave
-            render(vertexArrayMars, uniforms6);  //MARS
-            render(vertexArrayWolf, uniforms2);  // Sun
-            render(vertexArrayEarth, uniforms3);  // Earth
-            render(vertexArrayMoon, uniforms5);  //Moon
-        }
-        else if(camPositionMoon.z  > camPositionSun.z > camPositionEarth.z){
+        
+        if(camPositionMoon.z  > camPositionSun.z > camPositionEarth.z){ //Cuando orbitan detras del sol
             render(vertexArrayStars, uniforms);
             render(vertexArrayShip, uniforms4);  //Nave
             render(vertexArrayEarth, uniforms3);  // Earth
-            render(vertexArrayMoon, uniforms5);  //Moon
-            render(vertexArrayWolf, uniforms2);  // Sun
             render(vertexArrayMars, uniforms6);
-            
+            render(vertexArrayMoon, uniforms5);  //Moon
+            render(vertexArrayWolf, uniforms2);  // Sun 
         }
-        else if(camPositionEarth.z > camPositionMoon.z > camPositionSun.z)
+        else if(camPositionEarth.z > camPositionMoon.z > camPositionSun.z)   //Cuando orbitan entrente al sol
         {
             // El sol está más cerca de la cámara, renderiza primero la tierra:
             //render(vertexArrayStars,uniforms);
@@ -678,39 +667,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
             render(vertexArrayShip, uniforms4);   //Nave
             render(vertexArrayWolf, uniforms2);  // Sun
             render(vertexArrayEarth, uniforms3);  // Earth
-            render(vertexArrayMoon, uniforms5); //Moon
             render(vertexArrayMars, uniforms6);
-        }
-        else if(camPositionEarth.z  > camPositionSun.z > camPositionMoon.z){
-            render(vertexArrayStars, uniforms);
-            render(vertexArrayShip, uniforms4);   //Nave
             render(vertexArrayMoon, uniforms5); //Moon
-            render(vertexArrayWolf, uniforms2);  // Sun
-            render(vertexArrayEarth, uniforms3);  // Earth
-            render(vertexArrayMars, uniforms6);
-        }
-        else if(camPositionSun.z > camPositionMoon.z > camPositionEarth.z) {
-            render(vertexArrayStars, uniforms);
-            render(vertexArrayShip, uniforms4);   //Nave
-            
-            render(vertexArrayEarth, uniforms3);  // Earth
-            render(vertexArrayMoon, uniforms5); //Moon
-            render(vertexArrayWolf, uniforms2);  // Sun
-            render(vertexArrayMars, uniforms6);
-        }else if(camPositionSun.z > camPositionEarth.z > camPositionMoon.z ){
-            render(vertexArrayStars, uniforms);
-            render(vertexArrayShip, uniforms4);   //Nave        
-            render(vertexArrayMoon, uniforms5); //Moon
-            render(vertexArrayEarth, uniforms3);  // Earth
-            render(vertexArrayWolf, uniforms2);  // Sun
-            render(vertexArrayMars, uniforms6);
-        }else if(camPositionSun.z > camPositionEarth.z > camPositionMars.z > camPositionMoon.z ){
-            render(vertexArrayStars, uniforms);
-            render(vertexArrayShip, uniforms4);   //Nave   
-            render(vertexArrayMoon, uniforms5); //Moon
-            render(vertexArrayMars, uniforms6);
-            render(vertexArrayEarth, uniforms3);
-            render(vertexArrayWolf, uniforms2); 
         }
         
 
