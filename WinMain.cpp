@@ -176,6 +176,7 @@ glm::mat4 createModelMatrix() {
     return transtation * scale * rotation;
 }
 
+
 glm::mat4 createModelMatrixGasPlanet() {
     glm::mat4 transtation = glm::translate(glm::mat4(1), glm::vec3(0.0f, 0.0f, -15.0f));
     glm::mat4 scale = glm::scale(glm::mat4(1), glm::vec3(1.0f, 1.0f, 1.0f));
@@ -281,7 +282,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     Uniforms uniforms3; //Earth
     Uniforms uniforms4; //Starship
     Uniforms uniforms5; //GasPlanet
-    Uniforms uniforms6; //RockPlanet
+    Uniforms uniforms6; //MarsPlanet
 
     glm::vec3 translation(0.0f, 0.0f, 0.0f); 
     glm::vec3 rotationAngles(0.0f, 0.0f, 0.0f); 
@@ -297,13 +298,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     uniforms2.view = glm::lookAt(cameraPosition, targetPosition, upVector);
     uniforms2.index = 2;
     uniforms3.view = glm::lookAt(cameraPosition, targetPosition, upVector);
-    uniforms3.index = 3;
+    uniforms3.index = 6;
     uniforms4.view = glm::lookAt(cameraPosition, targetPosition, upVector);
     uniforms4.index = 4;
     uniforms5.view = glm::lookAt(cameraPosition, targetPosition, upVector);
     uniforms5.index = 5;
     uniforms6.view = glm::lookAt(cameraPosition, targetPosition, upVector);
-    uniforms6.index = 6;
+    uniforms6.index = 3;
 
     srand(time(nullptr));
 
@@ -438,10 +439,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     glm::mat4 translationSpaceShip = glm::translate(glm::mat4(1), glm::vec3(0.0f, 140.0f, 560.0f));
     
     glm::mat4 scaleMatrix = glm::scale(glm::mat4(1.0f), glm::vec3(4.0f, 4.0f, 4.0f));
-    glm::mat4 scaleMatrixSun = glm::scale(glm::mat4(1.0f), glm::vec3(0.25f, 0.25f, 0.25f));
-    glm::mat4 scaleMatrixMoon = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f, 0.1f, 0.1f));
+    glm::mat4 scaleMatrixSun = glm::scale(glm::mat4(1.0f), glm::vec3(0.3f, 0.3f, 0.3f));
+    glm::mat4 scaleMatrixMoon = glm::scale(glm::mat4(1.0f), glm::vec3(0.14f, 0.14f, 0.14f));
     glm::mat4 scaleMatrixEarth = glm::scale(glm::mat4(1.0f), glm::vec3(0.04f, 0.04f, 0.04f));
-    glm::mat4 scaleMatrixAux= glm::scale(glm::mat4(1.0f), glm::vec3(0.006f, 0.006f, 0.006f));
+    glm::mat4 scaleMatrixAux= glm::scale(glm::mat4(1.0f), glm::vec3(0.005f, 0.005f, 0.005f));
     glm::mat4 scaleMatrixMars = glm::scale(glm::mat4(1.0f), glm::vec3(0.04f, 0.04f, 0.04f));
 
 
@@ -513,13 +514,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
             
         }
 
-        float orbitRadius = 4.0f;  // You can adjust as needed
+        float orbitRadius = 5.0f;  // You can adjust as needed
         float orbitInclination = 0.0f;  // inclination angle in degrees
         float xOrbitOffset = orbitRadius * cos(glm::radians(rotationAngle));
         float yOrbitOffset = orbitRadius * sin(glm::radians(rotationAngle)) * sin(glm::radians(orbitInclination));
         float zOrbitOffset = orbitRadius * sin(glm::radians(rotationAngle)) * cos(glm::radians(orbitInclination));
 
-        float orbitRadius2 = 8.0f;  // You can adjust as needed
+        float orbitRadius2 = 10.0f;  // You can adjust as needed
         float xOrbitOffset2 = orbitRadius2 * cos(glm::radians(rotationAngle));
         float yOrbitOffset2 = orbitRadius2 * sin(glm::radians(rotationAngle)) * sin(glm::radians(orbitInclination));
         float zOrbitOffset2 = orbitRadius2 * sin(glm::radians(rotationAngle)) * cos(glm::radians(orbitInclination));
