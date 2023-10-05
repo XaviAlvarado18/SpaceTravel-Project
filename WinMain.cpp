@@ -122,6 +122,10 @@ void render(const std::vector<Vertex>& vertexArray,  const Uniforms& uniforms) {
                             case 6:
                                 processedFragment = fragmentShaderMars(fragment);
                                 break;
+
+                            case 7:
+                                processedFragment = fragmentShaderRock(fragment);
+                                break;
                         }
                         
                         SDL_SetRenderDrawColor(renderer, processedFragment.color.r, processedFragment.color.g, processedFragment.color.b, processedFragment.color.a);
@@ -179,6 +183,13 @@ glm::mat4 createModelMatrix() {
 
 glm::mat4 createModelMatrixGasPlanet() {
     glm::mat4 transtation = glm::translate(glm::mat4(1), glm::vec3(0.0f, 0.0f, -15.0f));
+    glm::mat4 scale = glm::scale(glm::mat4(1), glm::vec3(1.0f, 1.0f, 1.0f));
+    glm::mat4 rotation = glm::rotate(glm::mat4(1), glm::radians((a++)), glm::vec3(0, 1.0f, 0.0f));
+    return transtation * scale * rotation;
+}
+
+glm::mat4 createModelMatrixRockPlanet() {
+    glm::mat4 transtation = glm::translate(glm::mat4(1), glm::vec3(0.0f, 0.0f, -18.0f));
     glm::mat4 scale = glm::scale(glm::mat4(1), glm::vec3(1.0f, 1.0f, 1.0f));
     glm::mat4 rotation = glm::rotate(glm::mat4(1), glm::radians((a++)), glm::vec3(0, 1.0f, 0.0f));
     return transtation * scale * rotation;
@@ -283,6 +294,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     Uniforms uniforms4; //Starship
     Uniforms uniforms5; //GasPlanet
     Uniforms uniforms6; //MarsPlanet
+    Uniforms uniforms7; //RockPlanet
 
     glm::vec3 translation(0.0f, 0.0f, 0.0f); 
     glm::vec3 rotationAngles(0.0f, 0.0f, 0.0f); 
@@ -305,6 +317,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     uniforms5.index = 5;
     uniforms6.view = glm::lookAt(cameraPosition, targetPosition, upVector);
     uniforms6.index = 3;
+    uniforms7.view = glm::lookAt(cameraPosition, targetPosition, upVector);
+    uniforms7.index = 7;
 
     srand(time(nullptr));
 
@@ -345,6 +359,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     std::vector<Face> facesMars;
     
 
+    //Rock Planet
+    std::vector<glm::vec3> verticesRock;
+    std::vector<glm::vec3> normalRock;
+    std::vector<Face> facesRock;
+    
+
 
     //LOAD SUN
     bool success2 = loadOBJ("../sphere.obj", verticesK, normalK, facesK);
@@ -382,6 +402,13 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         return 1;
     }
 
+    //Rock Planet
+
+    bool success7 = loadOBJ("../sphere.obj", verticesRock, normalRock, facesRock);
+    if(!success7){
+        return 1;
+    }
+
 
 
     glm::mat4 additionalRotation = glm::rotate(glm::mat4(1.0f), glm::radians(180.0f), glm::vec3(1.0f, 0.0f, 0.0f));
@@ -411,6 +438,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         vertex = glm::vec3(additionalRotation * glm::vec4(vertex, 1.0f));
     }
 
+    for (glm::vec3& vertex : verticesRock){
+        vertex = glm::vec3(additionalRotation * glm::vec4(vertex, 1.0f));
+    }
+
     //STARS
     std::vector<Vertex> vertexArrayStars = setupVertexArray(verticesStellar, normalStellar, facesStellar);
 
@@ -429,6 +460,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     //MARS
     std::vector<Vertex> vertexArrayMars = setupVertexArray(verticesMars, normalMars, facesMars);
 
+    //Rock Planet
+    std::vector<Vertex> vertexArrayRock = setupVertexArray(verticesRock, normalRock, facesRock);
+
 
     bool running = true;
     SDL_Event event;
@@ -444,7 +478,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     glm::mat4 scaleMatrixEarth = glm::scale(glm::mat4(1.0f), glm::vec3(0.04f, 0.04f, 0.04f));
     glm::mat4 scaleMatrixAux= glm::scale(glm::mat4(1.0f), glm::vec3(0.005f, 0.005f, 0.005f));
     glm::mat4 scaleMatrixMars = glm::scale(glm::mat4(1.0f), glm::vec3(0.04f, 0.04f, 0.04f));
-
+    glm::mat4 scaleMatrixRock = glm::scale(glm::mat4(1.0f), glm::vec3(0.08f, 0.08f, 0.08f));
 
     float rotationAngle = 0.0f;
 
@@ -511,7 +545,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
              uniforms4.view = glm::lookAt(cameraPosition, targetPosition, upVector);
              uniforms5.view = glm::lookAt(cameraPosition, targetPosition, upVector);
              uniforms6.view = glm::lookAt(cameraPosition, targetPosition, upVector);
-            
+             uniforms7.view = glm::lookAt(cameraPosition, targetPosition, upVector);
         }
 
         float orbitRadius = 5.0f;  // You can adjust as needed
@@ -531,11 +565,16 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         float yOrbitOffset3 = orbitRadius3 * sin(glm::radians(rotationAngle)) * sin(glm::radians(orbitInclination));
         float zOrbitOffset3 = orbitRadius3 * sin(glm::radians(rotationAngle)) * cos(glm::radians(orbitInclination));
 
+        float orbitRadius4 = 14.0f;  // You can adjust as needed
+        float xOrbitOffset4 = orbitRadius4 * cos(glm::radians(rotationAngle));
+        float yOrbitOffset4 = orbitRadius4 * sin(glm::radians(rotationAngle)) * sin(glm::radians(orbitInclination));
+        float zOrbitOffset4 = orbitRadius4 * sin(glm::radians(rotationAngle)) * cos(glm::radians(orbitInclination));
+
 
         glm::mat4 earthOrbitTranslate = glm::translate(glm::mat4(1.0f), glm::vec3(xOrbitOffset, yOrbitOffset, zOrbitOffset));
         glm::mat4 marsOrbitTranslate = glm::translate(glm::mat4(1.0f), glm::vec3(xOrbitOffset2, yOrbitOffset2, zOrbitOffset2));
         glm::mat4 gasOrbitTranslate = glm::translate(glm::mat4(1.0f), glm::vec3(xOrbitOffset3, yOrbitOffset3, zOrbitOffset3));
-        
+        glm::mat4 rockOrbitTranslate = glm::translate(glm::mat4(1.0f), glm::vec3(xOrbitOffset4, yOrbitOffset4, zOrbitOffset4));
 
 
         rotationAngle += 1.0f; // Puedes ajustar la velocidad de rotación cambiando el valor 1.0f.
@@ -574,6 +613,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         uniforms6.projection = createProjectionMatrix();
         uniforms6.viewport = createViewportMatrix();
 
+        uniforms7.model = scaleMatrixRock * rockOrbitTranslate * createModelMatrixRockPlanet();
+        uniforms7.projection = createProjectionMatrix();
+        uniforms7.viewport = createViewportMatrix();
+
 
         SDL_SetRenderDrawColor(renderer, clearColor.r, clearColor.g, clearColor.b, clearColor.a);
         SDL_RenderClear(renderer);
@@ -585,6 +628,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
         glm::vec4 camPositionSun = uniforms2.model * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
         glm::vec4 camPositionMoon = uniforms5.model * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
         glm::vec4 camPositionMars = uniforms6.model * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+        glm::vec4 camPositionRock = uniforms7.model * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
 
         
         if(camPositionMoon.z  > camPositionSun.z > camPositionEarth.z){ //Cuando orbitan detras del sol
@@ -592,6 +636,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
             render(vertexArrayShip, uniforms4);  //Nave
             render(vertexArrayEarth, uniforms3);  // Earth
             render(vertexArrayMars, uniforms6);
+            render(vertexArrayRock, uniforms7); //ROCK
             render(vertexArrayMoon, uniforms5);  //Moon
             render(vertexArrayWolf, uniforms2);  // Sun 
         }
@@ -604,6 +649,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
             render(vertexArrayWolf, uniforms2);  // Sun
             render(vertexArrayEarth, uniforms3);  // Earth
             render(vertexArrayMars, uniforms6);
+            render(vertexArrayRock, uniforms7); //ROCK
             render(vertexArrayMoon, uniforms5); //Moon
         }
         

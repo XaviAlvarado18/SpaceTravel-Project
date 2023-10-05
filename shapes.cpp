@@ -353,4 +353,39 @@ Fragment fragmentShaderSun(Fragment& fragment) {
 }
 
 
+Fragment fragmentShaderRock(Fragment& fragment) {
+    glm::vec2 fragmentCoords(fragment.original.x, fragment.original.y);
 
+    Color rockColor1 = Color(160, 160, 160); // Color de la roca principal
+    Color rockColor2 = Color(100, 100, 100); // Color de la roca secundaria
+    Color craterColor = Color(40, 40, 40);   // Color de los cráteres
+
+    FastNoiseLite noise;
+    noise.SetNoiseType(FastNoiseLite::NoiseType_OpenSimplex2);
+    noise.SetSeed(4321); // Cambia la semilla para variaciones
+    noise.SetFrequency(0.02f);
+    noise.SetFractalType(FastNoiseLite::FractalType_DomainWarpProgressive);
+    noise.SetFractalOctaves(6);
+    noise.SetFractalLacunarity(2.0f);
+    noise.SetFractalGain(0.5f);
+
+    float ox = 3000.0f;
+    float oy = 3000.0f;
+    float zoom = 200.0f;
+
+    float noiseValue = abs(noise.GetNoise((fragment.original.x + ox) * zoom, (fragment.original.y + oy) * zoom));
+
+    // Definir un umbral para la transición entre los colores de la roca y los cráteres
+    float threshold = 0.2f;
+
+    if (noiseValue < threshold) {
+        // Usar el color de la roca principal para la mayor parte del planeta
+        fragment.color = rockColor1;
+    } else {
+        // Agregar detalles de cráteres a medida que nos alejamos del color de la roca principal
+        float gradient = (noiseValue - threshold) / (1.0f - threshold);
+        fragment.color = rockColor1 * (1.0f - gradient) + craterColor * gradient;
+    }
+
+    return fragment;
+}
