@@ -35,3 +35,16 @@ El proyecto consiste en generar una simulación de un sistema solar en C++ utili
 - Funciones para cargar modelos 3D en formato OBJ, como loadOBJ() y setupVertexArray().
 
 - El bucle principal de la aplicación se encuentra en WinMain(), donde se gestionan eventos, se actualiza la vista de la cámara y se realiza la renderización.
+
+## Ejemplos de planetas renderizados
+
+- Sol:
+  <div align="center">
+      <img src="Sun.gif" alt="Gif del sol">
+  </div>
+- Planeta tierra:
+  <div align="center">
+      <img src="Sun.gif" alt="Gif de la tierra">
+  </div>
+  
+  
