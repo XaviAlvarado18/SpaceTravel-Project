@@ -18,10 +18,20 @@ El proyecto consiste en generar una simulación de un sistema solar en C++ utili
 ## Funciones y métodos
 - Color: Esta estructura representa un color RGBA (rojo, verde, azul y alfa) utilizado para definir colores en la aplicación.
 
-- Uniforms: La estructura "Uniforms" parece ser utilizada para almacenar matrices de transformación y otros datos uniformes utilizados en los sombreadores y en la configuración de la vista.
+- Uniforms: La estructura "Uniforms" es utilizada para almacenar las matrices de transformación y otros datos uniformes utilizados en los sombreadores y en la configuración de la vista.
 
-- Fragment: La estructura "Fragment" parece representar fragmentos en la representación gráfica, almacenando información como posición, color, profundidad y otros datos.
+- Fragment: La estructura "Fragment" es utilizada para representar fragmentos en la representación gráfica, almacenando información como posición, color, profundidad y otros datos.
 
 - Face: La estructura "Face" representa una cara en un modelo 3D con información sobre los índices de vértices y normales.
 
 - Vertex: La estructura "Vertex" almacena información sobre un vértice, incluyendo su posición y normal.
+
+## Funciones y métodos
+
+- render(): Esta función se encarga de realizar la renderización de los objetos 3D en la pantalla, aplicando transformaciones y sombreado según los parámetros especificados.
+
+- Funciones para la creación de matrices de transformación como createViewportMatrix(), createProjectionMatrix(), createModelMatrixStellarSpace(), etc.
+
+- Funciones para cargar modelos 3D en formato OBJ, como loadOBJ() y setupVertexArray().
+
+- El bucle principal de la aplicación se encuentra en WinMain(), donde se gestionan eventos, se actualiza la vista de la cámara y se realiza la renderización.
