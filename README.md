@@ -44,7 +44,7 @@ El proyecto consiste en generar una simulación de un sistema solar en C++ utili
   </div>
 - Planeta tierra:
   <div align="center">
-      <img src="Sun.gif" alt="Gif de la tierra">
+      <img src="Tierra.gif" alt="Gif de la tierra">
   </div>
   
   
