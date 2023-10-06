@@ -46,5 +46,8 @@ El proyecto consiste en generar una simulación de un sistema solar en C++ utili
   <div align="center">
       <img src="Tierra.gif" alt="Gif de la tierra">
   </div>
-  
+- Venus:
+  <div align="center">
+      <img src="Venus.gif" alt="Gif de Venus">
+  </div>
   
